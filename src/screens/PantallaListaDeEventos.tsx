@@ -2,7 +2,7 @@
 import { View, Text, FlatList } from 'react-native';
 
 import { globalStyles } from '../theme/theme';
-import { PrimaryButton } from '../components/shared/PrimaryButton';
+import { PrimaryButton } from '../presentation/components/shared/PrimaryButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParams } from '../routes/StackNavigator';
 
@@ -26,12 +26,6 @@ export const PantallaListaDeEventos = () => {
             <FlatList data={eventos}
             renderItem={({item}) =>(<PrimaryButton onPress={()=>navigation.navigate('DetalleDeEvento',{id: item.id, name: item.name})}
             label={item.name} />)}/>
-
-
-<PrimaryButton
-      onPress={()=>navigation.navigate('Settings')}
-      label= 'About'
-      />
             
         </View>
 

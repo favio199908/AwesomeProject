@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 
 import { StackNavigator } from './routes/StackNavigator';
+import { BottomTabsNavigator } from './routes/BottomTabsNavigator';
+import { MaterialBottomNavigator } from './routes/MaterialBottomNavigator';
 
 
 export const App = () => {
@@ -13,8 +15,11 @@ export const App = () => {
   return (
     
     <NavigationContainer>
-      <StackNavigator/>
-  
+
+      {/*<StackNavigator/>
+      <BottomTabsNavigator/>*/}
+      <MaterialBottomNavigator/>
+
     </NavigationContainer>
   );
 };

@@ -1,32 +1,55 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { PrimaryButton } from '../components/shared/PrimaryButton';
-
-
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { PrimaryButton } from '../presentation/components/shared/PrimaryButton';
+import { PosterCarousel } from '../presentation/components/movies/PosterCarousel';
+import { HorizontalCarousel } from '../presentation/components/movies/HorizontalCarousel';
+import { UseMovies } from '../presentation/hooks/UseMovies';
+import { RootStackParams } from '../routes/StackNavigator';
 
 export const HomeScreen = () => {
+    const { top } = useSafeAreaInsets();
+    const { isLoading, nowPlaying, popular, topRated, upcoming, popularNextPage } = UseMovies();
+    const navigation = useNavigation<NavigationProp<RootStackParams>>();
 
-  const navigation = useNavigation();
-  return (
-    <ScrollView>
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 24, marginBottom: 20 }}>Feria de Libros</Text>
-      <Text style={{ textAlign: 'center', marginBottom: 20 }}>
-        Bienvenido a nuestra feria de libros. Explora nuestra amplia selección de libros y eventos.
-      </Text>
-      <PrimaryButton
-      onPress={()=>navigation.navigate('About' as never)}
-      label= 'About'
-      />
-      <PrimaryButton
-      onPress={()=>navigation.navigate('Event' as never)}
-      label= 'Events'
-      />
-      {/* Otros botones o enlaces para navegar a diferentes secciones */}
-    </View>
-    </ScrollView>
-  );
+    if (isLoading) {
+        return <Text>Cargando...</Text>;
+    }
+
+    return (
+        <ScrollView>
+            <View>
+                <PosterCarousel movies={nowPlaying} />
+
+                {/* Populares */}
+                <HorizontalCarousel 
+                    movies={popular} 
+                    title="Populares" 
+                    loadNextPage={popularNextPage}
+                />
+
+                {/* Mejor Calificadas */}
+                <HorizontalCarousel movies={topRated} title="Mejor calificadas" />
+
+                {/* Próximamente */}
+                <HorizontalCarousel movies={upcoming} title="Próximamente" />
+
+                <Text>Pantalla de Inicio</Text>
+
+                <PrimaryButton
+                    onPress={() => navigation.navigate('Eventos')}
+                    label='Eventos'
+                />
+                <PrimaryButton
+                    onPress={() => navigation.navigate('Libros')}
+                    label='Libros'
+                />
+                <PrimaryButton
+                    onPress={() => navigation.navigate('About' as never)}
+                    label='About'
+                />
+            </View>
+        </ScrollView>
+    );
 };
-
-export default HomeScreen;

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
-import { PrimaryButton } from '../components/shared/PrimaryButton';
+import { PrimaryButton } from '../presentation/components/shared/PrimaryButton';
 
 
 
