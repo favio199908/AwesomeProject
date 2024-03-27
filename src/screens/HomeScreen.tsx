@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, Button, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { PrimaryButton } from '../components/shared/PrimaryButton';
 
 
 
-const HomeScreen = () => {
+export const HomeScreen = () => {
 
   const navigation = useNavigation();
   return (
@@ -15,26 +15,13 @@ const HomeScreen = () => {
       <Text style={{ textAlign: 'center', marginBottom: 20 }}>
         Bienvenido a nuestra feria de libros. Explora nuestra amplia selección de libros y eventos.
       </Text>
-      <Button 
-        title="Ver Lista de Libros"
-        
-      />
-      <Button
-        title="Ver Eventos"
-       
-      />
-      <Button
-        title="Ver Mapa de feria"
-       
-      />
-      <Button
-      onPress={()=>navigation.navigate('About' as never)}
-        title="Ver Informacion de Aplicacion"
-       
-      />
       <PrimaryButton
       onPress={()=>navigation.navigate('About' as never)}
       label= 'About'
+      />
+      <PrimaryButton
+      onPress={()=>navigation.navigate('Event' as never)}
+      label= 'Events'
       />
       {/* Otros botones o enlaces para navegar a diferentes secciones */}
     </View>
