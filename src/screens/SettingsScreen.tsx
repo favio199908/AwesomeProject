@@ -1,15 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Tts from 'react-native-tts';
 
 export const SettingsScreen = () => {
   const navigation = useNavigation();
+
+  // Función para leer el texto en voz
+  const speak = () => {
+    Tts.speak('Este es el texto que se leerá en voz.');
+  };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('About' as never)}>
+        onPress={() => {
+          
+          speak(); // Llama a la función para leer en voz cuando se presiona el botón
+        }}>
         <Text style={styles.buttonText}>About</Text>
       </TouchableOpacity>
     </View>
