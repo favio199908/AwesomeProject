@@ -11,25 +11,21 @@ import {useNavigation} from '@react-navigation/native';
 
 interface Props {
   // movie: FullMovie;
-  poster: string;
-  originalTitle: string;
+
   title: string;
 }
 
-export const LibrosHeader = ({poster, originalTitle, title}: Props) => {
+export const LibrosHeader = ({title}: Props) => {
   const {height: screenHeight} = useWindowDimensions();
   const navigation = useNavigation();
 
   return (
     <>
       <View style={{...styles.imageContainer, height: screenHeight * 0.7}}>
-        <View style={styles.imageBorder}>
-          <Image style={styles.posterImage} source={{uri: poster}} />
-        </View>
+        <View style={styles.imageBorder}></View>
       </View>
 
       <View style={styles.marginContainer}>
-        <Text style={styles.subTitle}>{originalTitle}</Text>
         <Text style={styles.title}>{title}</Text>
       </View>
 

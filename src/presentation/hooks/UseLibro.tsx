@@ -6,7 +6,7 @@ import {libroDBFetcher} from '../../config/adapters/libroDB.adapter';
 
 export const UseLibro = (librotitle: string) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [movie, setLibro] = useState<FullLibro>();
+  const [libro, setLibro] = useState<FullLibro>();
 
   useEffect(() => {
     loadLibro();
@@ -29,6 +29,6 @@ export const UseLibro = (librotitle: string) => {
 
   return {
     isLoading,
-    movie,
+    libro,
   };
 };
